@@ -1,6 +1,6 @@
 {
   "name": "@codewave/wavecalendar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "exports": {
@@ -22,7 +22,7 @@
   },
   "peerDependencies": {
     "class-variance-authority": "^0.7.0",
-    "@codewave/wavekit": "workspace:*",
+    "@codewave/wavekit": "^0.1.0",
     "@hookform/resolvers": "^5.0.0",
     "date-fns": "^4.0.0",
     "lucide-react": "^0.511.0",
