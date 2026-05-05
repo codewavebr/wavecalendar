@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "paths": {
+      "@codewave/wavekit": ["../wavekit/src/index.ts"],
+      "@codewave/wavekit/*": ["../wavekit/src/*"],
+      "@codewave/wavekit/ui": ["../wavekit/src/ui/index.ts"],
+      "@codewave/wavecalendar": ["./src/index.ts"],
+      "@codewave/wavecalendar/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
+}
