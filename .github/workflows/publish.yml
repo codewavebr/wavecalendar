@@ -1,9 +1,8 @@
 name: Publish Package
 
 on:
-  push:
-    tags:
-      - "v*"
+  release:
+    types: [published]
 
 jobs:
   publish:
@@ -21,7 +20,6 @@ jobs:
         with:
           repository: codewavebr/wavekit
           path: wavekit
-          token: ${{ secrets.CODEWAVE_REPO_TOKEN }}
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -48,10 +46,17 @@ jobs:
       - name: Build
         run: bun run build
 
-      - name: Configure GitHub Packages registry
-        run: echo "@codewave:registry=https://npm.pkg.github.com" > .npmrc
+      - name: Sync version from release tag
+        run: npm version "${GITHUB_REF_NAME#v}" --no-git-tag-version
 
-      - name: Publish to GitHub Packages
+      - name: Configure GitHub Packages auth
+        run: |
+          echo "@codewave:registry=https://npm.pkg.github.com" > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm publish
+
+      - name: Publish to GitHub Packages
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
