@@ -3,12 +3,14 @@
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-import { Tabs, TabsList, TabsTrigger } from "@codewavebr/wavekit/ui";
+import { Tabs } from "@codewavebr/wavekit/ui";
 
 import type { TCalendarView } from "../scheduler-types";
 
-export type WidgetCalendarView = Extract<TCalendarView, "week" | "month" | "year">;
+export type WidgetCalendarView = Extract<
+  TCalendarView,
+  "week" | "month" | "year"
+>;
 
 export interface WidgetCalendarHeaderProps {
   currentDate: Date;
@@ -50,22 +52,24 @@ export function WidgetCalendarHeader({
   return (
     <div className="space-y-4">
       <Tabs
-        value={view}
-        onValueChange={(value: string) =>
-          onViewChange(value as WidgetCalendarView)
+        selectedKey={view}
+        onSelectionChange={(key) =>
+          onViewChange(String(key) as WidgetCalendarView)
         }
       >
-        <TabsList className="flex h-9 w-full gap-1 rounded-lg bg-background p-0.5">
-          <TabsTrigger value="week" className="flex-1 text-xs">
-            Semana
-          </TabsTrigger>
-          <TabsTrigger value="month" className="flex-1 rounded-lg text-xs">
-            Mes
-          </TabsTrigger>
-          <TabsTrigger value="year" className="flex-1 rounded-lg text-xs">
-            Ano
-          </TabsTrigger>
-        </TabsList>
+        <Tabs.ListContainer>
+          <Tabs.List className="flex h-9 w-full gap-1 rounded-lg bg-background p-0.5">
+            <Tabs.Tab id="week" className="flex-1 text-xs">
+              Semana
+            </Tabs.Tab>
+            <Tabs.Tab id="month" className="flex-1 rounded-lg text-xs">
+              Mes
+            </Tabs.Tab>
+            <Tabs.Tab id="year" className="flex-1 rounded-lg text-xs">
+              Ano
+            </Tabs.Tab>
+          </Tabs.List>
+        </Tabs.ListContainer>
       </Tabs>
 
       <div className="flex items-center justify-between">

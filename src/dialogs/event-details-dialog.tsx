@@ -2,21 +2,9 @@
 
 import {
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
   Button,
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+  Modal,
+  useOverlayState,
 } from "@codewavebr/wavekit/ui";
 import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -45,6 +33,7 @@ export function EventDetailsDialog({ event, children }: EventDetailsDialogProps)
   const startDate = parseISO(event.startDate);
   const endDate = parseISO(event.endDate);
   const [open, setOpen] = useState(false);
+  const state = useOverlayState({ isOpen: open, onOpenChange: setOpen });
   const { deleteEvent, loading, error } = useWaveCalendarDeleteEvent();
 
   const handleDelete = async () => {
@@ -53,79 +42,102 @@ export function EventDetailsDialog({ event, children }: EventDetailsDialogProps)
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>{event.title}</DialogTitle>
-        </DialogHeader>
-
-        <div className="space-y-4">
-          <DetailRow icon={<User className="mt-1 size-4 shrink-0" />} label="Responsavel">
-            {event.user.name}
-          </DetailRow>
-          <DetailRow icon={<Calendar className="mt-1 size-4 shrink-0" />} label="Inicio">
-            {capitalizeLongWords(
-              format(startDate, "dd 'de' MMMM yyyy 'as' HH:mm", {
-                locale: ptBR,
-              }),
-            )}
-          </DetailRow>
-          <DetailRow icon={<Clock className="mt-1 size-4 shrink-0" />} label="Termino">
-            {capitalizeLongWords(
-              format(endDate, "dd 'de' MMMM yyyy 'as' HH:mm", {
-                locale: ptBR,
-              }),
-            )}
-          </DetailRow>
-          <DetailRow icon={<Text className="mt-1 size-4 shrink-0" />} label="Descricao">
-            {event.description}
-          </DetailRow>
-
-          {error && (
-            <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
-              {error}
-            </div>
-          )}
-        </div>
-
-        <DialogFooter className="gap-2">
-          <EditEventDialog event={event}>
-            <Button type="button" variant="outline">
-              Editar
-            </Button>
-          </EditEventDialog>
-
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button type="button" variant="destructive" size="sm">
-                <Trash2 className="mr-2 size-4" />
-                Excluir
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Excluir Evento</AlertDialogTitle>
-                <AlertDialogDescription>
-                  Tem certeza que deseja excluir este evento? Esta acao nao pode
-                  ser desfeita.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                <AlertDialogAction
-                  onClick={handleDelete}
-                  disabled={loading}
-                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+    <Modal state={state}>
+      <Modal.Trigger>{children}</Modal.Trigger>
+      <Modal.Backdrop>
+        <Modal.Container size="lg">
+          <Modal.Dialog>
+            <Modal.Header>
+              <Modal.Heading>{event.title}</Modal.Heading>
+            </Modal.Header>
+            <Modal.Body>
+              <div className="space-y-4">
+                <DetailRow
+                  icon={<User className="mt-1 size-4 shrink-0" />}
+                  label="Responsavel"
                 >
-                  {loading ? "Excluindo..." : "Excluir"}
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+                  {event.user.name}
+                </DetailRow>
+                <DetailRow
+                  icon={<Calendar className="mt-1 size-4 shrink-0" />}
+                  label="Inicio"
+                >
+                  {capitalizeLongWords(
+                    format(startDate, "dd 'de' MMMM yyyy 'as' HH:mm", {
+                      locale: ptBR,
+                    }),
+                  )}
+                </DetailRow>
+                <DetailRow
+                  icon={<Clock className="mt-1 size-4 shrink-0" />}
+                  label="Termino"
+                >
+                  {capitalizeLongWords(
+                    format(endDate, "dd 'de' MMMM yyyy 'as' HH:mm", {
+                      locale: ptBR,
+                    }),
+                  )}
+                </DetailRow>
+                <DetailRow
+                  icon={<Text className="mt-1 size-4 shrink-0" />}
+                  label="Descricao"
+                >
+                  {event.description}
+                </DetailRow>
+
+                {error && (
+                  <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
+                    {error}
+                  </div>
+                )}
+              </div>
+            </Modal.Body>
+            <Modal.Footer className="flex gap-2">
+              <EditEventDialog event={event}>
+                <Button type="button" variant="outline">
+                  Editar
+                </Button>
+              </EditEventDialog>
+
+              <AlertDialog>
+                <AlertDialog.Trigger>
+                  <Button type="button" variant="danger" size="sm">
+                    <Trash2 className="mr-2 size-4" />
+                    Excluir
+                  </Button>
+                </AlertDialog.Trigger>
+                <AlertDialog.Backdrop>
+                  <AlertDialog.Container>
+                    <AlertDialog.Dialog>
+                      <AlertDialog.Header>
+                        <AlertDialog.Heading>Excluir Evento</AlertDialog.Heading>
+                      </AlertDialog.Header>
+                      <AlertDialog.Body>
+                        Tem certeza que deseja excluir este evento? Esta acao nao
+                        pode ser desfeita.
+                      </AlertDialog.Body>
+                      <AlertDialog.Footer className="flex gap-2">
+                        <Button slot="close" variant="outline">
+                          Cancelar
+                        </Button>
+                        <Button
+                          variant="danger"
+                          isPending={loading}
+                          isDisabled={loading}
+                          onPress={handleDelete}
+                        >
+                          {loading ? "Excluindo..." : "Excluir"}
+                        </Button>
+                      </AlertDialog.Footer>
+                    </AlertDialog.Dialog>
+                  </AlertDialog.Container>
+                </AlertDialog.Backdrop>
+              </AlertDialog>
+            </Modal.Footer>
+          </Modal.Dialog>
+        </Modal.Container>
+      </Modal.Backdrop>
+    </Modal>
   );
 }
 

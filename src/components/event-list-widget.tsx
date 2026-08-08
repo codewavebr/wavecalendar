@@ -73,9 +73,9 @@ export function EventListWidget({
           <AddEventDialog>
             <Button
               variant="ghost"
-              size="icon"
+              isIconOnly
               className="h-8 w-8 rounded-full"
-              title="Adicionar novo agendamento"
+              aria-label="Adicionar novo agendamento"
             >
               <Plus className="h-4 w-4" />
             </Button>
