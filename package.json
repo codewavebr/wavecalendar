@@ -1,6 +1,6 @@
 {
   "name": "@codewavebr/wavecalendar",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "type": "module",
   "sideEffects": false,
   "repository": {
@@ -84,7 +84,7 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@codewavebr/wavekit": "^0.2.3",
+    "@codewavebr/wavekit": "^0.2.5",
     "@heroui/react": "^3.0.0",
     "@heroui/styles": "^3.0.0",
     "@hookform/resolvers": "^5.0.0",
@@ -104,7 +104,7 @@
     }
   },
   "devDependencies": {
-    "@codewavebr/wavekit": "^0.2.3",
+    "@codewavebr/wavekit": "^0.2.5",
     "@heroui/react": "^3.2.4",
     "@heroui/styles": "^3.2.4",
     "@hookform/resolvers": "^5.0.0",
