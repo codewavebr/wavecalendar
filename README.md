@@ -151,3 +151,25 @@ Props passed directly to `AppCalendarAdapter`, such as `actions` or `slots`, ove
 - Keep generic UI primitives, theme tokens, shell, tables, and charts in `@codewave/wavekit`.
 - Keep auth, tenant, billing, shared config, and infrastructure contracts in `@codewave/wavecore`.
 - Keep app-specific adapters inside each application.
+
+## Publish
+
+Prepared for GitHub Packages under the `@codewave` scope.
+Run `bun run build` before publishing and use `npm publish` after authenticating to
+`https://npm.pkg.github.com`.
+
+## Scripts
+
+```bash
+bun install
+bun run test
+bun run typecheck
+bun run build
+```
+
+When developing next to a local `wavekit` checkout:
+
+```bash
+cd ../wavekit && bun install && bun run build
+cd ../wavecalendar && bun install && bun run link:wavekit
+```

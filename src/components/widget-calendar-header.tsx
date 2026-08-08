@@ -51,7 +51,9 @@ export function WidgetCalendarHeader({
     <div className="space-y-4">
       <Tabs
         value={view}
-        onValueChange={(value) => onViewChange(value as WidgetCalendarView)}
+        onValueChange={(value: string) =>
+          onViewChange(value as WidgetCalendarView)
+        }
       >
         <TabsList className="flex h-9 w-full gap-1 rounded-lg bg-background p-0.5">
           <TabsTrigger value="week" className="flex-1 text-xs">

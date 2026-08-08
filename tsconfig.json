@@ -1,16 +1,18 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "jsx": "react-jsx",
+    "strict": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
     "noEmit": true,
-    "paths": {
-      "@codewave/wavekit": ["../wavekit/src/index.ts"],
-      "@codewave/wavekit/*": ["../wavekit/src/*"],
-      "@codewave/wavekit/ui": ["../wavekit/src/ui/index.ts"],
-      "@codewave/wavecalendar": ["./src/index.ts"],
-      "@codewave/wavecalendar/*": ["./src/*"]
-    }
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.test.ts"]
 }

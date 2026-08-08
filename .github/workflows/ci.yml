@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: wavecalendar
+
+      - name: Checkout WaveKit
+        uses: actions/checkout@v4
+        with:
+          repository: codewavebr/wavekit
+          path: wavekit
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install and build WaveKit
+        working-directory: wavekit
+        run: |
+          bun install
+          bun run build
+
+      - name: Install WaveCalendar
+        working-directory: wavecalendar
+        run: |
+          bun install
+          bun run link:wavekit
+
+      - name: Test
+        working-directory: wavecalendar
+        run: bun run test
+
+      - name: Typecheck
+        working-directory: wavecalendar
+        run: bun run typecheck
+
+      - name: Build
+        working-directory: wavecalendar
+        run: bun run build
