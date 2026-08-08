@@ -1,4 +1,4 @@
-# @codewave/wavecalendar
+# @codewavebr/wavecalendar
 
 Shared calendar and scheduler package for Code Wave products.
 
@@ -7,27 +7,27 @@ WaveCalendar owns the reusable scheduling experience: calendar state, day/week/m
 ## Exports
 
 ```ts
-import { WaveCalendarProvider, createWaveCalendarAdapter } from "@codewave/wavecalendar";
-import { CalendarClientContainer } from "@codewave/wavecalendar/components";
-import { AddEventDialog } from "@codewave/wavecalendar/dialogs";
-import { useWaveCalendarCreateEvent } from "@codewave/wavecalendar/mutations";
+import { WaveCalendarProvider, createWaveCalendarAdapter } from "@codewavebr/wavecalendar";
+import { CalendarClientContainer } from "@codewavebr/wavecalendar/components";
+import { AddEventDialog } from "@codewavebr/wavecalendar/dialogs";
+import { useWaveCalendarCreateEvent } from "@codewavebr/wavecalendar/mutations";
 ```
 
-- `@codewave/wavecalendar`: provider, adapter factory, context, actions, slots, helpers, form/schema, mutations, DnD, types, and interfaces.
-- `@codewave/wavecalendar/components`: scheduler UI pieces such as header, views, event blocks, agenda cards, side navigation helpers, and compact widgets.
-- `@codewave/wavecalendar/dialogs`: reusable add, edit, and details dialogs.
-- `@codewave/wavecalendar/form`: form values, defaults, color options, and event/form mappers.
-- `@codewave/wavecalendar/schema`: Zod schema for event forms.
-- `@codewave/wavecalendar/mutations`: hooks that call injected calendar actions.
-- `@codewave/wavecalendar/adapter`: `createWaveCalendarAdapter` for app-level integration.
-- `@codewave/wavecalendar/dnd`: drag-and-drop provider and draggable/droppable calendar primitives.
-- `@codewave/wavecalendar/helpers`: date, range, grouping, filtering, and layout helpers.
-- `@codewave/wavecalendar/types` and `@codewave/wavecalendar/interfaces`: shared public calendar contracts.
+- `@codewavebr/wavecalendar`: provider, adapter factory, context, actions, slots, helpers, form/schema, mutations, DnD, types, and interfaces.
+- `@codewavebr/wavecalendar/components`: scheduler UI pieces such as header, views, event blocks, agenda cards, side navigation helpers, and compact widgets.
+- `@codewavebr/wavecalendar/dialogs`: reusable add, edit, and details dialogs.
+- `@codewavebr/wavecalendar/form`: form values, defaults, color options, and event/form mappers.
+- `@codewavebr/wavecalendar/schema`: Zod schema for event forms.
+- `@codewavebr/wavecalendar/mutations`: hooks that call injected calendar actions.
+- `@codewavebr/wavecalendar/adapter`: `createWaveCalendarAdapter` for app-level integration.
+- `@codewavebr/wavecalendar/dnd`: drag-and-drop provider and draggable/droppable calendar primitives.
+- `@codewavebr/wavecalendar/helpers`: date, range, grouping, filtering, and layout helpers.
+- `@codewavebr/wavecalendar/types` and `@codewavebr/wavecalendar/interfaces`: shared public calendar contracts.
 
 ## Data Contracts
 
 ```ts
-import type { IEvent, IUser } from "@codewave/wavecalendar";
+import type { IEvent, IUser } from "@codewavebr/wavecalendar";
 
 const users: IUser[] = [
   {
@@ -58,8 +58,8 @@ const events: IEvent[] = [
 
 import {
   CalendarClientContainer,
-} from "@codewave/wavecalendar/components";
-import { WaveCalendarProvider } from "@codewave/wavecalendar/provider";
+} from "@codewavebr/wavecalendar/components";
+import { WaveCalendarProvider } from "@codewavebr/wavecalendar/provider";
 
 export function CalendarPage({ users, events }) {
   return (
@@ -84,8 +84,8 @@ import {
   createWaveCalendarAdapter,
   type WaveCalendarActions,
   type WaveCalendarSlots,
-} from "@codewave/wavecalendar";
-import { AddEventDialog, EventDetailsDialog } from "@codewave/wavecalendar/dialogs";
+} from "@codewavebr/wavecalendar";
+import { AddEventDialog, EventDetailsDialog } from "@codewavebr/wavecalendar/dialogs";
 
 export const AppCalendarAdapter = createWaveCalendarAdapter({
   useActions() {
@@ -132,7 +132,7 @@ export const AppCalendarAdapter = createWaveCalendarAdapter({
 Then use the adapter around the package components:
 
 ```tsx
-import { CalendarClientContainer } from "@codewave/wavecalendar/components";
+import { CalendarClientContainer } from "@codewavebr/wavecalendar/components";
 
 export function CalendarPage({ users, events }) {
   return (
@@ -147,16 +147,16 @@ Props passed directly to `AppCalendarAdapter`, such as `actions` or `slots`, ove
 
 ## Package Boundaries
 
-- Keep reusable scheduling UI, state, helpers, dialogs, form schema, and mutation hooks in `@codewave/wavecalendar`.
-- Keep generic UI primitives, theme tokens, shell, tables, and charts in `@codewave/wavekit`.
-- Keep auth, tenant, billing, shared config, and infrastructure contracts in `@codewave/wavecore`.
+- Keep reusable scheduling UI, state, helpers, dialogs, form schema, and mutation hooks in `@codewavebr/wavecalendar`.
+- Keep generic UI primitives, theme tokens, shell, tables, and charts in `@codewavebr/wavekit`.
+- Keep auth, tenant, billing, shared config, and infrastructure contracts in `@codewavebr/wavecore`.
 - Keep app-specific adapters inside each application.
 
 ## Publish
 
 Publishing happens automatically when a GitHub Release is published.
 The workflow syncs `package.json` version from the release tag (e.g. `v0.1.0`)
-and publishes `@codewave/wavecalendar` to GitHub Packages.
+and publishes `@codewavebr/wavecalendar` to GitHub Packages.
 Consumers should authenticate to `https://npm.pkg.github.com`.
 
 ## Scripts

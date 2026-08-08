@@ -1,5 +1,5 @@
 {
-  "name": "@codewave/wavecalendar",
+  "name": "@codewavebr/wavecalendar",
   "version": "0.1.1",
   "type": "module",
   "sideEffects": false,
@@ -83,7 +83,7 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@codewave/wavekit": "^0.1.0",
+    "@codewavebr/wavekit": "^0.1.0",
     "@hookform/resolvers": "^5.0.0",
     "class-variance-authority": "^0.7.0",
     "date-fns": "^4.0.0",
@@ -96,7 +96,7 @@
     "zod": "^3.0.0"
   },
   "peerDependenciesMeta": {
-    "@codewave/wavekit": {
+    "@codewavebr/wavekit": {
       "optional": true
     }
   },

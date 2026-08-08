@@ -21,7 +21,7 @@ if (!wavekitRoot) {
 }
 
 const wavekitDist = join(wavekitRoot, "dist");
-const destination = join(root, "node_modules", "@codewave", "wavekit");
+const destination = join(root, "node_modules", "@codewavebr", "wavekit");
 
 if (!existsSync(wavekitDist)) {
   console.error(
@@ -44,4 +44,4 @@ if (existsSync(join(wavekitRoot, "tailwind-preset.cjs"))) {
   );
 }
 
-console.log(`Linked ${wavekitRoot} dist into node_modules/@codewave/wavekit`);
+console.log(`Linked ${wavekitRoot} dist into node_modules/@codewavebr/wavekit`);
