@@ -14,16 +14,14 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          path: wavecalendar
+        uses: actions/checkout@v5
 
       - name: Checkout WaveKit
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: codewavebr/wavekit
           path: wavekit
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.CODEWAVE_REPO_TOKEN }}
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -37,29 +35,23 @@ jobs:
           bun run build
 
       - name: Install WaveCalendar
-        working-directory: wavecalendar
         run: |
           bun install
           bun run link:wavekit
 
       - name: Test
-        working-directory: wavecalendar
         run: bun run test
 
       - name: Typecheck
-        working-directory: wavecalendar
         run: bun run typecheck
 
       - name: Build
-        working-directory: wavecalendar
         run: bun run build
 
       - name: Configure GitHub Packages registry
-        working-directory: wavecalendar
         run: echo "@codewave:registry=https://npm.pkg.github.com" > .npmrc
 
       - name: Publish to GitHub Packages
-        working-directory: wavecalendar
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm publish

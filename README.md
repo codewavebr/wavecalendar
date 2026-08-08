@@ -173,3 +173,8 @@ When developing next to a local `wavekit` checkout:
 cd ../wavekit && bun install && bun run build
 cd ../wavecalendar && bun install && bun run link:wavekit
 ```
+
+## CI note
+
+Private cross-repo checkout of `codewavebr/wavekit` needs a PAT secret named
+`CODEWAVE_REPO_TOKEN` with `contents: read` on WaveKit (repo or org secret).

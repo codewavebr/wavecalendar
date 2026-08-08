@@ -3,13 +3,29 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const wavekitRoot = join(root, "..", "wavekit");
+const candidates = [
+  process.env.WAVEKIT_ROOT,
+  join(root, "wavekit"),
+  join(root, "..", "wavekit"),
+].filter(Boolean);
+
+const wavekitRoot = candidates.find((candidate) =>
+  existsSync(join(candidate, "package.json")),
+);
+
+if (!wavekitRoot) {
+  console.error(
+    "WaveKit checkout not found. Expected ./wavekit, ../wavekit, or WAVEKIT_ROOT.",
+  );
+  process.exit(1);
+}
+
 const wavekitDist = join(wavekitRoot, "dist");
 const destination = join(root, "node_modules", "@codewave", "wavekit");
 
 if (!existsSync(wavekitDist)) {
   console.error(
-    "WaveKit dist/ not found. Run `bun install && bun run build` in ../wavekit first.",
+    `WaveKit dist/ not found at ${wavekitDist}. Run bun install && bun run build in WaveKit first.`,
   );
   process.exit(1);
 }
@@ -28,4 +44,4 @@ if (existsSync(join(wavekitRoot, "tailwind-preset.cjs"))) {
   );
 }
 
-console.log("Linked local WaveKit dist into node_modules/@codewave/wavekit");
+console.log(`Linked ${wavekitRoot} dist into node_modules/@codewave/wavekit`);
