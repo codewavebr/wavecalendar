@@ -1,6 +1,6 @@
 {
   "name": "@codewavebr/wavecalendar",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
   "sideEffects": false,
   "repository": {
@@ -120,5 +120,8 @@
     "tsx": "^4.19.4",
     "typescript": "^5.2.2",
     "zod": "^3.25.0"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1"
   }
 }
