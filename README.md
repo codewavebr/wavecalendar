@@ -156,8 +156,11 @@ Props passed directly to `AppCalendarAdapter`, such as `actions` or `slots`, ove
 
 Publishing happens automatically when a GitHub Release is published.
 The workflow syncs `package.json` version from the release tag (e.g. `v0.1.0`)
-and publishes `@codewavebr/wavecalendar` to GitHub Packages.
-Consumers should authenticate to `https://npm.pkg.github.com`.
+and publishes `@codewavebr/wavecalendar` to the public npm registry
+(`https://registry.npmjs.org`). No install auth is required for consumers.
+
+The repository secret `NPM_TOKEN` (Automation token with publish rights on the
+`@codewavebr` npm org) must be set for the publish workflow.
 
 ## Scripts
 

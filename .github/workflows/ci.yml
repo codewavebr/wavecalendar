@@ -13,27 +13,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Checkout WaveKit
-        uses: actions/checkout@v5
-        with:
-          repository: codewavebr/wavekit
-          path: wavekit
-
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
-      - name: Install and build WaveKit
-        working-directory: wavekit
-        run: |
-          bun install
-          bun run build
-
-      - name: Install WaveCalendar
-        run: |
-          bun install
-          bun run link:wavekit
+      - name: Install
+        run: bun install
 
       - name: Test
         run: bun run test
