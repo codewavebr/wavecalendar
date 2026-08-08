@@ -154,9 +154,10 @@ Props passed directly to `AppCalendarAdapter`, such as `actions` or `slots`, ove
 
 ## Publish
 
-Prepared for GitHub Packages under the `@codewave` scope.
-Run `bun run build` before publishing and use `npm publish` after authenticating to
-`https://npm.pkg.github.com`.
+Publishing happens automatically when a GitHub Release is published.
+The workflow syncs `package.json` version from the release tag (e.g. `v0.1.0`)
+and publishes `@codewave/wavecalendar` to GitHub Packages.
+Consumers should authenticate to `https://npm.pkg.github.com`.
 
 ## Scripts
 
@@ -173,9 +174,3 @@ When developing next to a local `wavekit` checkout:
 cd ../wavekit && bun install && bun run build
 cd ../wavecalendar && bun install && bun run link:wavekit
 ```
-
-## Publish
-
-Publishing happens automatically when a GitHub Release is published.
-The workflow syncs `package.json` version from the release tag (e.g. `v0.1.0`)
-and publishes `@codewave/wavecalendar` to GitHub Packages.
