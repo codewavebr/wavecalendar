@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import { Tabs, TabsList, TabsTrigger } from "@codewave/wavekit/ui";
+import { Tabs, TabsList, TabsTrigger } from "@codewavebr/wavekit/ui";
 
 import type { TCalendarView } from "../scheduler-types";
 

@@ -17,7 +17,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@codewave/wavekit/ui";
+} from "@codewavebr/wavekit/ui";
 import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { Calendar, Clock, Text, Trash2, User } from "lucide-react";

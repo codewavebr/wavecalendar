@@ -22,7 +22,7 @@
         "zod": "^3.25.0",
       },
       "peerDependencies": {
-        "@codewave/wavekit": "^0.1.0",
+        "@codewavebr/wavekit": "^0.1.0",
         "@hookform/resolvers": "^5.0.0",
         "class-variance-authority": "^0.7.0",
         "date-fns": "^4.0.0",
@@ -35,7 +35,7 @@
         "zod": "^3.0.0",
       },
       "optionalPeers": [
-        "@codewave/wavekit",
+        "@codewavebr/wavekit",
       ],
     },
   },

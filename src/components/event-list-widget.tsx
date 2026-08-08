@@ -4,8 +4,8 @@ import { format, isAfter, isBefore, isSameDay, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { CalendarIcon, CheckCircle2, Clock, Plus, User } from "lucide-react";
 
-import { Button } from "@codewave/wavekit/ui";
-import { cn } from "@codewave/wavekit/utils";
+import { Button } from "@codewavebr/wavekit/ui";
+import { cn } from "@codewavebr/wavekit/utils";
 import { useCalendar } from "../scheduler-context";
 import { AddEventDialog, EventDetailsDialog } from "../dialogs";
 

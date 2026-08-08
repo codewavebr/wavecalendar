@@ -28,7 +28,7 @@ import {
   SelectValue,
   SingleDayPicker,
   Textarea,
-} from "@codewave/wavekit/ui";
+} from "@codewavebr/wavekit/ui";
 import { ptBR } from "date-fns/locale";
 import { useState, type ReactNode } from "react";
 import { useForm } from "react-hook-form";
